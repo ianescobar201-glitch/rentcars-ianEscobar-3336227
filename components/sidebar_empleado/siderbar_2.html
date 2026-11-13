@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Barra de navegación de empleado | Rentcars</title>
+</head>
+<body>
+<aside class="sidebar-container bg-dark-sidebar d-flex flex-column flex-shrink-0 p-3 text-white">
+    <!-- Logo / Marca -->
+    <a href="../../index.html" class="d-flex align-items-center mb-4 text-white text-decoration-none px-2 pt-2">
+        <i class="bi bi-shield-lock-fill fs-3 text-warning me-2"></i>
+        <span class="fs-4 fw-bold tracking-wide">rentcars <span class="fs-6 text-warning fw-normal">Staff</span></span>
+    </a>
+
+    <hr class="border-secondary my-1">
+
+    <!-- Opciones de Navegación del Empleado -->
+    <ul class="nav nav-pills flex-column mb-auto gap-2 mt-3">
+        <li class="nav-item">
+            <a href="../../views/vehiculos/registro-vehiculos.html" class="nav-link sidebar-link d-flex align-items-center px-3 py-2 text-white-50" id="nav-registro-vehiculos">
+                <i class="bi bi-car-front-fill me-3 fs-5"></i>
+                <span class="fw-semibold">Registro de vehículos</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="../../views/alquileres/nuevo.html" class="nav-link sidebar-link d-flex align-items-center px-3 py-2 text-white-50" id="nav-nuevo-alquiler">
+                <i class="bi bi-file-earmark-plus me-3 fs-5"></i>
+                <span class="fw-semibold">Nuevo alquiler</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="../../views/alquileres/detalle.html" class="nav-link sidebar-link d-flex align-items-center px-3 py-2 text-white-50" id="nav-detalle-alquiler">
+                <i class="bi bi-file-earmark-text me-3 fs-5"></i>
+                <span class="fw-semibold">Detalle de alquiler</span>
+            </a>
+        </li>
+    </ul>
+
+    <hr class="border-secondary my-3">
+
+    <!-- Perfil del Empleado Autenticado -->
+    <div class="px-2">
+        <div class="d-flex align-items-center text-white text-decoration-none">
+            <!-- Avatar dinámico con Iniciales -->
+            <div id="empleado-avatar" class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-2 text-dark fw-bold shadow-sm" style="width: 38px; height: 38px; font-size: 0.9rem;">
+                --
+            </div>
+            <div class="overflow-hidden">
+                <!-- Nombre y Apellido del empleado -->
+                <strong id="empleado-nombre-completo" class="small d-block text-white text-truncate" style="max-width: 160px;">
+                    Cargando perfil...
+                </strong>
+                <!-- Correo o Rol -->
+                <span id="empleado-email" class="text-white-50 d-block text-truncate" style="font-size: 0.75rem; max-width: 160px;">
+                    Cargando perfil...
+                </span>
+            </div>
+        </div>
+    </div>
+</aside>
+</body>
+</html>

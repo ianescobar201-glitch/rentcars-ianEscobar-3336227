@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rentcars - Alquiler de Vehículos</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="Assets/Css/style.css">
+</head>
+<body>
+
+  <!-- Cabecera reutilizable -->
+  <div id="header-container"></div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    
+    <!-- 3. CARRUSEL PRINCIPAL DE CATEGORÍAS -->
+    <section id="carrusel-categorias" class="mb-5">
+      <div id="carouselRentcars" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselRentcars" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Económico"></button>
+          <button type="button" data-bs-target="#carouselRentcars" data-bs-slide-to="1" aria-label="Sedán"></button>
+          <button type="button" data-bs-target="#carouselRentcars" data-bs-slide-to="2" aria-label="SUV"></button>
+          <button type="button" data-bs-target="#carouselRentcars" data-bs-slide-to="3" aria-label="Lujo"></button>
+          <button type="button" data-bs-target="#carouselRentcars" data-bs-slide-to="4" aria-label="Van-carga"></button>
+        </div>
+
+        <!-- Slides con Imágenes e Información -->
+        <div class="carousel-inner">
+          <!-- Económico -->
+          <div class="carousel-item active">
+            <img src="assets/images/Economico/Kia_Picanto.jpg" class="d-block w-100 carousel-img" alt="Vehículo de categoría Económica con bajo consumo de combustible">
+            <div class="carousel-caption carousel-caption-custom d-none d-md-block text-start">
+              <span class="badge bg-primary mb-2">Categoría Económico</span>
+              <h2 class="fw-bold">Eficiencia y Ahorro en tu Ciudad</h2>
+              <p>Ideal para movilidad urbana diaria con el menor consumo de combustible.</p>
+              <a href="views/Seccion_vehiculos.html" class="btn btn-primary rounded-pill">Ver Vehículos</a>
+            </div>
+          </div>
+
+          <!-- Sedan -->
+          <div class="carousel-item">
+            <img src="assets/images/Sedán/Mazda_3.jpg" class="d-block w-100 carousel-img" alt="Automóvil Sedán confortable ideal para viajes familiares">
+            <div class="carousel-caption carousel-caption-custom d-none d-md-block text-start">
+              <span class="badge bg-primary mb-2">Categoría Sedán</span>
+              <h2 class="fw-bold">Confort y Elegancia Familiar</h2>
+              <p>Amplitud de baúl y confort de marcha en viajes largos.</p>
+              <a href="views/Seccion_vehiculos.html" class="btn btn-primary rounded-pill">Ver Vehículos</a>
+            </div>
+          </div>
+
+          <!-- SUV -->
+          <div class="carousel-item">
+            <img src="assets/images/Suv/Chevrolet_Captiva.jpg" class="d-block w-100 carousel-img" alt="Camioneta SUV moderna para todo tipo de terrenos">
+            <div class="carousel-caption carousel-caption-custom d-none d-md-block text-start">
+              <span class="badge bg-primary mb-2">Categoría SUV</span>
+              <h2 class="fw-bold">Aventura y Espacio Garantizado</h2>
+              <p>Potencia, tracción y seguridad para rutas intermunicipales o paseos.</p>
+              <a href="views/Seccion_vehiculos.html" class="btn btn-primary rounded-pill">Ver Vehículos</a>
+            </div>
+          </div>
+
+          <!-- DEPORTIVO -->
+          <div class="carousel-item">
+            <img src="assets/images/deportivo/Ford_Mustang.jpg" class="d-block w-100 carousel-img" alt="Automóvil deportivo de alto rendimiento">
+            <div class="carousel-caption carousel-caption-custom d-none d-md-block text-start">
+              <span class="badge bg-warning text-dark mb-2">Categoría Deportivo</span>
+              <h2 class="fw-bold">Experiencia Premium en vehículo deportivo</h2>
+              <p>Vehículos deportivo de alto rendimiento para una experiencia de conducción excepcional.</p>
+              <a href="views/Seccion_vehiculos.html" class="btn btn-warning text-dark rounded-pill">Ver Vehículos</a>
+            </div>
+          </div>
+
+          <!-- Van-carga -->
+          <div class="carousel-item">
+            <img src="assets/images/van-carga/Ford_Ranger.jpg" class="d-block w-100 carousel-img" alt="Van de carga amplia para transporte comercial y mudanzas">
+            <div class="carousel-caption carousel-caption-custom d-none d-md-block text-start">
+              <span class="badge bg-secondary mb-2">Categoría Van-Carga</span>
+              <h2 class="fw-bold">Soluciones para Logística y Carga</h2>
+              <p>Capacidad volumétrica adaptada para negocios y transporte pesado.</p>
+              <a href="views/Seccion_vehiculos.html" class="btn btn-light rounded-pill">Ver Vehículos</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles de Navegación -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselRentcars" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselRentcars" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. VEHÍCULOS DESTACADOS -->
+    <section id="promociones" class="container py-5">
+      <div class="text-center mb-5">
+        <span class="text-primary fw-bold text-uppercase">Conoce nuestra flota</span>
+        <h2 class="fw-bold fs-1">Vehículos destacados</h2>
+        <p class="text-muted">Explora algunos de los vehículos disponibles en nuestra flota.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Vehículo destacado 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-promo shadow-sm h-100">
+            <img src="assets/images/promociones/Promo_mustang.jpg" class="card-img-top" alt="Ford Mustang deportivo" style="height:210px; object-fit:cover;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">Ford Mustang Deportivo</h5>
+              <p class="text-muted small mb-0">Vehículo deportivo para quienes buscan una experiencia de conducción dinámica.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehículo destacado 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-promo shadow-sm h-100">
+            <img src="assets/images/promociones/Promo_picant.jpg" class="card-img-top" alt="Kia Picanto" style="height:210px; object-fit:cover;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">Kia Picanto</h5>
+              <p class="text-muted small mb-0">Una opción compacta y práctica para desplazamientos urbanos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehículo destacado 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-promo shadow-sm h-100">
+            <img src="assets/images/promociones/Promo_Mazda3.jpg" class="card-img-top" alt="Mazda 3 sedán" style="height:210px; object-fit:cover;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">Mazda 3</h5>
+              <p class="text-muted small mb-0">Un sedán que combina comodidad y espacio para tus recorridos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SECCIÓN DE TESTIMONIOS -->
+    <section id="testimonios" class="bg-light py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="text-primary fw-bold text-uppercase">Opiniones</span>
+          <h2 class="fw-bold fs-1">Testimonio de Clientes</h2>
+          <p class="text-muted">Conoce la experiencia de nuestros usuarios que han alquilado con rentcars.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Testimonio 1 -->
+          <div class="col-md-4">
+            <div class="card border-0 shadow-sm p-4 h-100 testimonial-card bg-white">
+              <div class="text-warning mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="card-text text-muted fst-italic">"Excelente atención. El proceso de entrega del vehículo fue rapidísimo y el auto estaba impecable."</p>
+              <div class="d-flex align-items-center mt-3">
+                <div class="fw-bold">Carlos Mendoza</div>
+                <span class="text-muted small ms-2">• Cliente Particular</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonio 2 -->
+          <div class="col-md-4">
+            <div class="card border-0 shadow-sm p-4 h-100 testimonial-card bg-white">
+              <div class="text-warning mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="card-text text-muted fst-italic">"Alquilamos una SUV para un viaje familiar durante el fin de semana. El vehículo fue cómodo y el proceso fue sencillo."</p>
+              <div class="d-flex align-items-center mt-3">
+                <div class="fw-bold">Andrea Ríos</div>
+                <span class="text-muted small ms-2">• Turista</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonio 3 -->
+          <div class="col-md-4">
+            <div class="card border-0 shadow-sm p-4 h-100 testimonial-card bg-white">
+              <div class="text-warning mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </div>
+              <p class="card-text text-muted fst-italic">"Uso rentcars frecuentemente para el transporte corporativo de mi empresa. La flota comercial de Vans es perfecta."</p>
+              <div class="d-flex align-items-center mt-3">
+                <div class="fw-bold">Fernando Gómez</div>
+                <span class="text-muted small ms-2">• Gerente de Operaciones</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SECCIÓN DE INFORMACIÓN -->
+    <section id="informacion" class="container py-5">
+      <!-- Sobre nuestra empresa y Ubicación -->
+      <div class="row g-5 align-items-center mb-5">
+        <div class="col-lg-6">
+          <span class="text-primary fw-bold text-uppercase">Sobre Nuestra Empresa</span>
+          <h2 class="fw-bold mb-3">Líderes en Alquiler de Vehículos</h2>
+          <p class="text-muted lead">
+            En <strong>rentcars</strong> simplificamos la forma en que te movilizas. Contamos con una trayectoria sólida brindando respaldo, vehículos asegurados y asistencia en carretera las 24 horas del día.
+          </p>
+          <p class="text-muted">
+            Nuestra visión es ofrecer una plataforma moderna, ágil y sin complicaciones burocráticas para que disfrutes de tu viaje desde el primer minuto.
+          </p>
+          <div class="d-flex gap-4 mt-4">
+            <div>
+              <h3 class="fw-bold text-primary mb-0">10+</h3>
+              <small class="text-muted">Años de experiencia</small>
+            </div>
+            <div class="border-start ps-4">
+              <h3 class="fw-bold text-primary mb-0">500+</h3>
+              <small class="text-muted">Vehículos disponibles</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ubicación con Mapa -->
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm overflow-hidden rounded-4">
+            <div class="card-header bg-dark text-white p-3 fw-bold d-flex align-items-center gap-2">
+              <i class="bi bi-geo-alt-fill text-danger"></i> Nuestra Ubicación Principal
+            </div>
+            <div class="ratio ratio-16x9">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125585.34185885002!2d-75.5492!3d10.3997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef625e638b97779%3A0xb35a0f02377a2889!2sCartagena!5e0!3m2!1ses!2sco!4v1680000000000!5m2!1ses!2sco" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de ubicación de Rentcars">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preguntas Frecuentes (Accordion) -->
+      <div class="row mb-5">
+        <div class="col-lg-10 mx-auto">
+          <div class="text-center mb-4">
+            <span class="text-primary fw-bold text-uppercase">Dudas Frecuentes</span>
+            <h3 class="fw-bold">Preguntas Frecuentes</h3>
+          </div>
+
+          <div class="accordion shadow-sm" id="faqRentcars">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  ¿Qué documentos necesito para alquilar un vehículo?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqRentcars">
+                <div class="accordion-body text-muted">
+                  Necesitas presentar tu documento de identidad vigente (cédula o pasaporte), licencia de conducción válida y vigente, y una tarjeta de crédito para la garantía del alquiler.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  ¿Cuál es la edad mínima para realizar un alquiler?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqRentcars">
+                <div class="accordion-body text-muted">
+                  La edad mínima requerida es de 18 años con al menos 1 año de antigüedad en la licencia de conducción.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  ¿El alquiler incluye seguro y asistencia en carretera?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqRentcars">
+                <div class="accordion-body text-muted">
+                  Sí, todas nuestras tarifas incluyen coberturas básicas de seguro contra colisión y asistencia mecánica 24/7 a nivel nacional.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contactos -->
+      <div class="row g-4 text-center">
+        <div class="col-md-3 col-sm-6">
+          <div class="p-4 bg-light rounded-4 h-100 shadow-sm border">
+            <div class="info-icon-box mx-auto mb-3"><i class="bi bi-telephone-fill"></i></div>
+            <h6 class="fw-bold">Teléfono</h6>
+            <p class="text-muted small mb-0">+57 (605) 555-0199</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="p-4 bg-light rounded-4 h-100 shadow-sm border">
+            <div class="info-icon-box mx-auto mb-3"><i class="bi bi-envelope-fill"></i></div>
+            <h6 class="fw-bold">Correo Electrónico</h6>
+            <p class="text-muted small mb-0">atencion@rentcars.com</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="p-4 bg-light rounded-4 h-100 shadow-sm border">
+            <div class="info-icon-box mx-auto mb-3"><i class="bi bi-geo-alt-fill"></i></div>
+            <h6 class="fw-bold">Dirección</h6>
+            <p class="text-muted small mb-0">Av. Principal #123, Centro</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="p-4 bg-light rounded-4 h-100 shadow-sm border">
+            <div class="info-icon-box mx-auto mb-3"><i class="bi bi-clock-fill"></i></div>
+            <h6 class="fw-bold">Horario de Atención</h6>
+            <p class="text-muted small mb-0">Lun - Dom: 06:00 - 22:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página reutilizable -->
+  <div id="footer-container"></div>
+
+  <!-- Bootstrap 5 JavaScript Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript principal: carga el header y el footer -->
+  <script src="Assets/Js/main.js"></script>
+</body>
+</html>

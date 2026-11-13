@@ -1,0 +1,110 @@
+/* Presentación principal de la página de servicios. */
+.service-hero {
+  color: #fff;
+  background: linear-gradient(120deg, #162331, #274b67);
+}
+
+.service-hero h1 {
+  max-width: 760px;
+}
+
+.service-hero .lead {
+  max-width: 680px;
+  color: rgba(255, 255, 255, .82);
+}
+
+.service-eyebrow {
+  color: #0d6efd;
+  letter-spacing: .12em;
+  font-size: .78rem;
+}
+
+.service-hero .service-eyebrow {
+  color: #9dc5ff;
+}
+
+/* Ajusta el buscador y los controles de filtro de categorías. */
+.service-search {
+  width: min(100%, 360px);
+}
+
+.service-filters .btn {
+  border-radius: 999px;
+  padding: .5rem 1rem;
+  font-weight: 600;
+}
+
+/* Tarjetas informativas para las alternativas de servicio. */
+.service-card {
+  height: 100%;
+  border: 1px solid #e8edf2;
+  border-radius: 1rem;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1rem 2rem rgba(23, 43, 61, .12);
+}
+
+.service-icon {
+  display: inline-flex;
+  width: 3.25rem;
+  height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  color: #0b5ed7;
+  background: #eaf2ff;
+  font-size: 1.5rem;
+}
+
+.service-card .card-body {
+  padding: 1.4rem;
+}
+
+.service-category {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: .35rem .7rem;
+  color: #0b5ed7;
+  background: #eaf2ff;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+/* Destaca la invitación a consultar disponibilidad sin mostrar tarifas. */
+.service-contact {
+  border: 1px solid #e1eaf2;
+  background: #f5f8fc;
+}
+
+/* En pantallas pequeñas, se permite desplazar los filtros sin romper el diseño. */
+@media (max-width: 575.98px) {
+  .service-hero {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .service-hero h1 {
+    font-size: 2rem;
+  }
+
+  .service-filters {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    padding-bottom: .5rem;
+  }
+
+  .service-filters .btn {
+    flex: 0 0 auto;
+  }
+}
+
+/* Respeta la preferencia del usuario de reducir animaciones. */
+@media (prefers-reduced-motion: reduce) {
+  .service-card {
+    transition: none;
+  }
+}

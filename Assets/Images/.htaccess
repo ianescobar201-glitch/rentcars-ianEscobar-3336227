@@ -1,0 +1,6 @@
+# Evita listar esta carpeta y bloquea la ejecución de archivos PHP subidos.
+Options -Indexes
+
+<FilesMatch "\.(?:php[0-9]?|phtml|phar)$">
+    Require all denied
+</FilesMatch>

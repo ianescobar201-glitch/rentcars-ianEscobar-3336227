@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo alquiler | Rentcars</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../Assets/Css/siderbar_empleados-css/sidebar_2.css">
+  <link rel="stylesheet" href="../../Assets/Css/alquileres-css/nuevo-alquiler.css?v=20261108-2">
+</head>
+<body class="bg-dark-app">
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div id="header-container"></div>
+
+  <main class="container rental-main py-4">
+    <header class="page-heading mb-4">
+      <div class="page-icon" aria-hidden="true">🚘</div>
+      <div>
+        <p class="page-eyebrow">RENTCARS / ALQUILERES</p>
+        <h1 class="page-title">Nuevo alquiler</h1>
+        <p class="page-description mb-0">Selecciona una reserva pendiente para registrar el alquiler.</p>
+      </div>
+    </header>
+
+    <div id="pageMessage" class="alert d-none" role="status" aria-live="polite"></div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-12 col-lg-5">
+        <section class="card rental-card h-100">
+          <div class="card-header">
+            <h2 class="section-title">Vehículo seleccionado</h2>
+            <p class="text-secondary mb-0">Datos asociados a la reserva elegida.</p>
+          </div>
+
+          <div class="vehicle-photo-wrap">
+            <span id="vehicleStatus" class="status-badge">Sin seleccionar</span>
+
+            <img id="vehiclePhoto" class="vehicle-photo d-none"
+                 alt="Foto del vehículo seleccionado">
+
+            <div id="vehiclePhotoPlaceholder" class="photo-placeholder">
+              <span aria-hidden="true">🚘</span>
+              <p>Selecciona una reserva del historial.</p>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <h3 id="vehicleName" class="vehicle-name">
+              Ningún vehículo seleccionado
+            </h3>
+
+            <p id="vehicleCategory" class="vehicle-category">
+              Categoría: —
+            </p>
+
+            <div class="data-row">
+              <span>Placa</span>
+              <strong id="vehiclePlate">—</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Marca</span>
+              <strong id="vehicleBrand">—</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Modelo</span>
+              <strong id="vehicleModel">—</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Año</span>
+              <strong id="vehicleYear">—</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Color</span>
+              <strong id="vehicleColor">—</strong>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="col-12 col-lg-7">
+        <section class="card rental-card h-100">
+          <div class="card-header">
+            <h2 class="section-title">Datos del cliente</h2>
+            <p class="text-secondary mb-0">
+              Información del usuario asociado a la reserva.
+            </p>
+          </div>
+
+          <div class="card-body">
+            <div class="customer-avatar" aria-hidden="true">👤</div>
+
+            <div class="data-row">
+              <span>Nombre</span>
+              <strong id="customerName">No vinculado</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Apellido</span>
+              <strong id="customerLastName">—</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Correo</span>
+              <strong id="customerEmail">No disponible</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Rol</span>
+              <strong id="customerRole">Cliente</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Estado</span>
+              <strong id="customerStatus">No disponible</strong>
+            </div>
+
+            <p class="form-help mt-3 mb-0">
+              Los datos se consultan desde la información del cliente asociada
+              a la reserva en la base de datos.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE ALQUILER -->
+    <section class="card rental-card mb-4">
+      <div class="card-header">
+        <h2 class="section-title">Formulario de alquiler</h2>
+        <p class="text-secondary mb-0">
+          Primero selecciona una reserva pendiente en el historial.
+        </p>
+      </div>
+
+      <div class="card-body">
+        <form id="rentalForm" novalidate>
+          <div class="row g-3">
+
+            <div class="col-12 col-md-6">
+              <label for="fechaEntrega" class="form-label">
+                Fecha y hora de entrega *
+              </label>
+
+              <input type="datetime-local"
+                     id="fechaEntrega"
+                     class="form-control"
+                     readonly
+                     required>
+
+              <div class="invalid-feedback">
+                Ingresa la fecha y hora de entrega.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="fechaDevolucion" class="form-label">
+                Fecha y hora de devolución *
+              </label>
+
+              <input type="datetime-local"
+                     id="fechaDevolucion"
+                     class="form-control"
+                     readonly
+                     required>
+
+              <div class="invalid-feedback">
+                La devolución debe ser posterior a la entrega.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="kilometrajeInicial" class="form-label">
+                Kilometraje inicial (opcional)
+              </label>
+
+              <input type="number"
+                     id="kilometrajeInicial"
+                     class="form-control"
+                     min="0"
+                     step="1"
+                     placeholder="Ej. 35200">
+
+              <div class="invalid-feedback">
+                Ingresa un kilometraje entero igual o mayor que cero.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="tipoTarifa" class="form-label">
+                Tipo de tarifa *
+              </label>
+
+              <select id="tipoTarifa" class="form-select" required>
+                <option value="">Selecciona una tarifa</option>
+                <option value="Por hora">Por hora</option>
+                <option value="Diaria">Diaria</option>
+              </select>
+
+              <div class="invalid-feedback">
+                Selecciona un tipo de tarifa.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="valorTarifa" class="form-label">
+                Valor de la tarifa (COP) *
+              </label>
+
+              <input type="text"
+                     id="valorTarifa"
+                     class="form-control"
+                     inputmode="decimal"
+                     autocomplete="off"
+                     placeholder="Ej. 150.000"
+                     required>
+
+              <div class="invalid-feedback">
+                Ingresa una tarifa válida mayor que cero.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="valorTotal" class="form-label">
+                Valor total (COP) *
+              </label>
+
+              <input type="text"
+                     id="valorTotal"
+                     class="form-control"
+                     inputmode="decimal"
+                     placeholder="Se calcula automáticamente"
+                     readonly
+                     required>
+
+              <div class="invalid-feedback">
+                Selecciona la tarifa e ingresa su valor para calcular el total.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="estadoAlquiler" class="form-label">
+                Estado del alquiler (automático)
+              </label>
+
+              <select id="estadoAlquiler" class="form-select" disabled>
+                <option value="Activo">Activo</option>
+                <option value="Inactivo">Inactivo</option>
+              </select>
+            </div>
+          </div>
+
+          <section class="tariff-manager mt-4"
+                   aria-labelledby="tariffManagerTitle">
+
+            <div class="tariff-manager-heading">
+              <div>
+                <h3 id="tariffManagerTitle" class="subsection-title">
+                  Cálculo de la tarifa
+                </h3>
+
+                <p class="form-help mb-0">
+                  Por hora: horas reservadas × valor por hora. Diaria: días reservados × valor diario.
+                  El sistema calcula el total desde las fechas de la reserva.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div class="form-actions mt-4">
+            <button type="submit"
+                    id="registerRentalBtn"
+                    class="btn btn-primary-dark">
+              Registrar alquiler
+            </button>
+
+            <button type="button"
+                    id="backBtn"
+                    class="btn btn-secondary-light">
+              Volver al listado
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- HISTORIAL DE RESERVAS -->
+    <section class="card rental-card mb-4">
+      <div class="card-header history-card-header">
+        <div>
+          <h2 class="section-title">Historial de reservas</h2>
+          <p class="text-secondary mb-0">
+            Selecciona una reserva pendiente para convertirla en alquiler.
+          </p>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div id="historyMessage"
+             class="alert d-none"
+             role="status"
+             aria-live="polite"></div>
+
+        <div class="table-responsive">
+          <table class="table history-table align-middle">
+            <thead>
+              <tr>
+                <th>Vehículo</th>
+                <th>Categoría</th>
+                <th>Cliente</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody id="reservationHistoryBody">
+              <tr>
+                <td colspan="7" class="history-empty">
+                  Cargando reservas...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIAL DE ALQUILERES -->
+    <section class="card rental-card mb-4">
+      <div class="card-header">
+        <h2 class="section-title">Historial de alquileres</h2>
+        <p class="text-secondary mb-0">
+          Consulta los alquileres registrados en la base de datos.
+        </p>
+      </div>
+
+      <div class="card-body">
+        <form id="rentalDateFilterForm" class="history-filters mb-3">
+          <div class="filter-field">
+            <label for="rentalSearch" class="form-label">
+              Buscar por nombre o correo
+            </label>
+
+            <input type="search"
+                   id="rentalSearch"
+                   class="form-control"
+                   placeholder="Nombre, apellido o correo">
+          </div>
+
+          <div class="filter-field filter-customer">
+            <label for="rentalCustomerFilter" class="form-label">
+              Cliente
+            </label>
+
+            <select id="rentalCustomerFilter" class="form-select">
+              <option value="">Todos los clientes</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="rentalStatusFilter" class="form-label">
+              Estado
+            </label>
+
+            <select id="rentalStatusFilter" class="form-select">
+              <option value="">Todos los estados</option>
+              <option value="activo">Activo</option>
+              <option value="cancelado">Cancelado</option>
+              <option value="completado">Completado</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="rentalDeliveryFrom" class="form-label">
+              Entrega desde
+            </label>
+
+            <input type="date"
+                   id="rentalDeliveryFrom"
+                   class="form-control">
+          </div>
+
+          <div class="filter-field">
+            <label for="rentalDeliveryTo" class="form-label">
+              Entrega hasta
+            </label>
+
+            <input type="date"
+                   id="rentalDeliveryTo"
+                   class="form-control">
+          </div>
+
+          <div class="filter-actions">
+            <button type="submit"
+                    id="applyRentalDateFilterBtn"
+                    class="btn btn-primary-dark">
+              Buscar
+            </button>
+
+            <button type="button"
+                    id="clearRentalDateFilterBtn"
+                    class="btn btn-secondary-light">
+              Limpiar filtros
+            </button>
+          </div>
+        </form>
+
+        <div id="rentalHistoryMessage"
+             class="alert d-none"
+             role="status"
+             aria-live="polite"></div>
+
+        <div class="table-responsive">
+          <table class="table history-table align-middle">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Vehículo</th>
+                <th>Entrega</th>
+                <th>Devolución</th>
+                <th>Tipo de tarifa</th>
+                <th>Valor tarifa</th>
+                <th>Valor total</th>
+                <th>Estado</th>
+                <th>Datos</th>
+              </tr>
+            </thead>
+
+            <tbody id="rentalHistoryBody">
+              <tr>
+                <td colspan="9" class="history-empty">
+                  Cargando alquileres...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- VENTANA DE DATOS DEL CLIENTE -->
+  <dialog id="customerDetailsDialog" class="customer-dialog">
+    <div class="customer-dialog-header">
+      <h2>Datos del cliente</h2>
+
+      <button type="button"
+              id="closeCustomerDialog"
+              class="dialog-close"
+              aria-label="Cerrar">
+        ×
+      </button>
+    </div>
+
+    <div class="customer-dialog-body">
+      <div class="customer-detail-row">
+        <span>Nombre</span>
+        <strong id="customerDetailName">—</strong>
+      </div>
+
+      <div class="customer-detail-row">
+        <span>Apellido</span>
+        <strong id="customerDetailLastName">—</strong>
+      </div>
+
+      <div class="customer-detail-row">
+        <span>Correo</span>
+        <strong id="customerDetailEmail">—</strong>
+      </div>
+    </div>
+
+    <div class="customer-dialog-footer">
+      <button type="button"
+              id="closeCustomerDialogFooter"
+              class="btn btn-secondary-light">
+        Cerrar
+      </button>
+    </div>
+  </dialog>
+
+      <div id="footer-container"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../Assets/Js/main.js"></script>
+  <script src="../../Assets/Js/sidebar_empleado-js/sidebar_2.js?v=4"></script>
+  <script src="../../Assets/Js/alquileres-js/nuevo-alquiler.js?v=20261108-5"></script>
+</body>
+</html>

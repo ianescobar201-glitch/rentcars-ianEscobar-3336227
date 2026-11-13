@@ -1,0 +1,80 @@
+/* =========================================
+   Estilos Sidebar Fija - rentcars
+========================================= */
+
+/* Fondo general de la aplicación */
+body.bg-dark-app {
+    background-color: #1a1c23 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Layout principal */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Sidebar fija en el lado izquierdo */
+.sidebar-container {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #12141a !important;
+    border-right: 1px solid #2d3142;
+    overflow-y: auto;
+}
+
+/* Contenido principal a la derecha de la Sidebar */
+.main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    padding: 2.5rem;
+}
+
+/* Enlaces de la barra lateral */
+.sidebar-link {
+    border-radius: 8px;
+    transition: all 0.25s ease-in-out;
+}
+
+.sidebar-link:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Estado activo resaltado */
+.sidebar-link.active {
+    color: #ffffff !important;
+    background-color: #0d6efd !important;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.35);
+}
+
+.tracking-wide {
+    letter-spacing: 0.05em;
+}
+
+/* Adaptabilidad Responsive (Tablet y Celular) */
+@media (max-width: 991.98px) {
+    .sidebar-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 1.25rem;
+    }
+
+    .app-layout {
+        flex-direction: column;
+    }
+}

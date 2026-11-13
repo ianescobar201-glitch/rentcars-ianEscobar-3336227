@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Registro de vehículos | Rentcars</title>
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../../Assets/Css/siderbar_empleados-css/sidebar_2.css">
+
+  <!-- CSS del proyecto -->
+  <link rel="stylesheet" href="../../Assets/Css/vehiculos-css/registro-vehiculos.css">
+</head>
+
+<body class="bg-dark-app">
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+
+      <!-- Encabezado reutilizable -->
+      <div id="header-container"></div>
+
+  <main class="container py-4">
+
+    <h1 class="page-title">Registro de vehículos</h1>
+    <p class="page-description">
+      Administra los vehículos y sus categorías.
+    </p>
+
+    <!-- Mensajes -->
+    <div id="message" class="alert d-none" role="status"></div>
+
+    <!-- Resumen -->
+    <div class="row g-3 mb-4">
+
+      <div class="col-md-4">
+        <div class="summary-card">
+          <span>Vehículos registrados</span>
+          <strong id="totalVehicles">0</strong>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card">
+          <span>Vehículos disponibles</span>
+          <strong id="availableVehicles">0</strong>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="summary-card">
+          <span>Categorías activas</span>
+          <strong id="totalCategories">0</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORMULARIO DE VEHÍCULOS -->
+    <section class="card app-card mb-4">
+
+      <div class="card-header">
+        <h2 id="formTitle">Registrar vehículo</h2>
+      </div>
+
+      <div class="card-body">
+
+        <form id="vehicleForm" novalidate>
+
+          <input type="hidden" id="vehicleId">
+
+          <!-- Información general -->
+          <h3 class="section-title">Información general</h3>
+
+          <div class="row g-3">
+
+            <div class="col-md-4">
+              <label for="placa" class="form-label">
+                Placa *
+              </label>
+
+              <input
+                type="text"
+                id="placa"
+                class="form-control text-uppercase"
+                placeholder="Ej. ABC123"
+                minlength="5"
+                maxlength="10"
+                required
+              >
+
+              <div class="invalid-feedback">
+                Ingresa una placa válida.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="marca" class="form-label">
+                Marca *
+              </label>
+
+              <input
+                type="text"
+                id="marca"
+                class="form-control"
+                placeholder="Ej. Renault"
+                maxlength="50"
+                required
+              >
+
+              <div class="invalid-feedback">
+                Ingresa la marca.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="modelo" class="form-label">
+                Modelo *
+              </label>
+
+              <input
+                type="text"
+                id="modelo"
+                class="form-control"
+                placeholder="Ej. Duster"
+                maxlength="50"
+                required
+              >
+
+              <div class="invalid-feedback">
+                Ingresa el modelo.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="anio" class="form-label">
+                Año *
+              </label>
+
+              <input
+                type="number"
+                id="anio"
+                class="form-control"
+                min="1900"
+                step="1"
+                required
+              >
+
+              <div class="invalid-feedback">
+                Ingresa un año válido.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="color" class="form-label">
+                Color *
+              </label>
+
+              <input
+                type="text"
+                id="color"
+                class="form-control"
+                placeholder="Ej. Gris"
+                maxlength="35"
+                required
+              >
+
+              <div class="invalid-feedback">
+                Ingresa el color.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="categoria" class="form-label">
+                Categoría *
+              </label>
+
+              <div class="input-group">
+                <select
+                  id="categoria"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Selecciona una categoría</option>
+                </select>
+
+                <button
+                  type="button"
+                  id="openCategoriesBtn"
+                  class="btn btn-outline-secondary"
+                >
+                  + Nueva
+                </button>
+              </div>
+
+              <div class="invalid-feedback">
+                Selecciona una categoría activa.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Especificaciones técnicas -->
+          <h3 class="section-title mt-4">
+            Especificaciones técnicas
+          </h3>
+
+          <div class="row g-3">
+
+            <div class="col-md-4">
+              <label for="combustible" class="form-label">
+                Combustible *
+              </label>
+
+              <select id="combustible" class="form-select" required>
+                <option value="">Selecciona</option>
+                <option>Gasolina</option>
+                <option>Diésel</option>
+                <option>Gas (GLP/GNV)</option>
+                <option>Eléctrico</option>
+                <option>Híbrido</option>
+              </select>
+
+              <div class="invalid-feedback">
+                Selecciona el combustible.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="transmision" class="form-label">
+                Transmisión *
+              </label>
+
+              <select id="transmision" class="form-select" required>
+                <option value="">Selecciona</option>
+                <option>Manual</option>
+                <option>Automática</option>
+              </select>
+
+              <div class="invalid-feedback">
+                Selecciona la transmisión.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="capacidad" class="form-label">
+                Capacidad de pasajeros *
+              </label>
+
+              <input
+                type="number"
+                id="capacidad"
+                class="form-control"
+                min="1"
+                max="50"
+                step="1"
+                placeholder="Ej. 5"
+                required
+              >
+
+              <div class="invalid-feedback">
+                Ingresa una capacidad válida.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="kilometraje" class="form-label">
+                Kilometraje actual *
+              </label>
+
+              <input
+                type="number"
+                id="kilometraje"
+                class="form-control"
+                min="0"
+                step="1"
+                placeholder="Ej. 35000"
+                required
+              >
+
+              <div class="invalid-feedback">
+                El kilometraje debe ser igual o mayor que cero.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="estadoVehiculo" class="form-label">
+                Estado del vehículo *
+              </label>
+
+              <select id="estadoVehiculo" class="form-select" required>
+                <option value="">Selecciona el estado</option>
+                <option>Disponible</option>
+                <option>Alquilado</option>
+                <option>En mantenimiento</option>
+                <option>Inactivo</option>
+              </select>
+
+              <div class="invalid-feedback">
+                Selecciona el estado.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="fotoVehiculo" class="form-label">
+                Foto del vehículo
+              </label>
+
+              <input
+                type="file"
+                id="fotoVehiculo"
+                class="form-control"
+                accept="image/jpeg,image/png,image/webp"
+              >
+
+              <small class="text-secondary">
+                JPG, PNG o WebP opcional, máximo 2 MB.
+              </small>
+
+              <div class="photo-container mt-2">
+                <img
+                  id="photoPreview"
+                  class="d-none"
+                  alt="Vista previa del vehículo"
+                >
+
+                <span id="photoPlaceholder">
+                  Vista previa de la foto
+                </span>
+              </div>
+
+              <button
+                type="button"
+                id="removePhotoBtn"
+                class="btn btn-sm btn-outline-danger mt-2 d-none"
+              >
+                Quitar foto
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Botones -->
+          <div class="d-flex flex-wrap gap-2 mt-4">
+
+            <button type="submit" id="submitVehicleBtn" class="btn btn-primary">
+              Registrar vehículo
+            </button>
+
+            <button type="button" id="clearVehicleBtn" class="btn btn-secondary">
+              Cancelar / Limpiar
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- LISTADO DE VEHÍCULOS -->
+    <section class="card app-card">
+
+      <div class="card-header">
+        <h2>Vehículos registrados</h2>
+      </div>
+
+      <div class="card-body">
+
+        <!-- Búsqueda y filtros -->
+        <div class="row g-3 mb-3">
+
+          <div class="col-md-4">
+            <label for="vehicleSearch" class="form-label">
+              Buscar por placa o modelo
+            </label>
+
+            <input
+              type="search"
+              id="vehicleSearch"
+              class="form-control"
+              placeholder="Escribe la placa o el modelo"
+            >
+          </div>
+
+          <div class="col-md-3">
+            <label for="filterCategory" class="form-label">
+              Filtrar por categoría
+            </label>
+
+            <select id="filterCategory" class="form-select">
+              <option value="">Todas las categorías</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label for="filterStatus" class="form-label">
+              Filtrar por estado
+            </label>
+
+            <select id="filterStatus" class="form-select">
+              <option value="">Todos los estados</option>
+              <option>Disponible</option>
+              <option>Reservado</option>
+              <option>Alquilado</option>
+              <option>En mantenimiento</option>
+              <option>Inactivo</option>
+            </select>
+          </div>
+
+          <div class="col-md-2 d-flex align-items-end">
+            <button
+              type="button"
+              id="resetFiltersBtn"
+              class="btn btn-secondary w-100"
+            >
+              Limpiar filtros
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-responsive">
+
+          <table class="table table-hover align-middle">
+
+            <thead>
+              <tr>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Color</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody id="vehiclesTableBody">
+              <tr>
+                <td colspan="8" class="text-center">
+                  No hay vehículos registrados.
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <p id="tableResultLabel" class="text-secondary small mb-0">
+          Mostrando 0 vehículos
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE CATEGORÍAS -->
+  <div
+    class="modal fade"
+    id="categoriesModal"
+    tabindex="-1"
+    aria-labelledby="categoriesModalTitle"
+    aria-hidden="true"
+  >
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="categoriesModalTitle">
+            Gestionar categorías
+          </h2>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Cerrar"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div id="categoryMessage" class="alert d-none" role="status"></div>
+
+          <form id="categoryForm" novalidate>
+
+            <input type="hidden" id="categoryId">
+
+            <div class="row g-3">
+
+              <div class="col-md-6">
+                <label for="categoryName" class="form-label">
+                  Nombre *
+                </label>
+
+                <input
+                  type="text"
+                  id="categoryName"
+                  class="form-control"
+                  maxlength="50"
+                  placeholder="Ej. SUV"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Escribe un nombre para la categoría.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="categoryStatus" class="form-label">
+                  Estado *
+                </label>
+
+                <select id="categoryStatus" class="form-select" required>
+                  <option value="Activa">Activa</option>
+                  <option value="Inactiva">Inactiva</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label for="categoryDescription" class="form-label">
+                  Descripción
+                </label>
+
+                <textarea
+                  id="categoryDescription"
+                  class="form-control"
+                  rows="2"
+                  maxlength="180"
+                  placeholder="Descripción de la categoría"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+
+              <button type="submit" id="saveCategoryBtn" class="btn btn-primary">
+                Guardar categoría
+              </button>
+
+              <button
+                type="button"
+                id="cancelCategoryBtn"
+                class="btn btn-secondary d-none"
+              >
+                Cancelar edición
+              </button>
+
+            </div>
+
+          </form>
+
+          <hr>
+
+          <h3 class="fs-6 fw-bold mb-3">Categorías creadas</h3>
+
+          <div id="categoriesList">
+            <p class="text-secondary">
+              No hay categorías registradas.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+      <!-- Pie reutilizable -->
+      <div id="footer-container"></div>
+    </div>
+  </div>
+
+  <!-- Bootstrap y JavaScript del proyecto -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../Assets/Js/main.js"></script>
+  <script src="../../Assets/Js/sidebar_empleado-js/sidebar_2.js?v=4"></script>
+  <script src="../../Assets/Js/vehiculos-js/registro-vehiculos.js?v=20261106-4"></script>
+
+</body>
+</html>

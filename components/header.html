@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Rentcars - Cabecera</title>
+</head>
+<body>
+<!-- components/header.html -->
+<header class="shadow-sm sticky-top bg-white">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-2">
+    <div class="container">
+      <!-- Identidad de Marca y Logo -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="Assets/Images/Logo.jpg" alt="Logo rentcars" class="brand-logo rounded-2 object-fit-contain" width="75" height="41">
+        <span class="fw-bold text-uppercase fs-4 brand-title">rent<span class="text-primary">cars</span></span>
+      </a>
+
+      <!-- Botón Hamburguesa para Mobile -->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRentcars" aria-controls="navbarRentcars" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menú de Navegación -->
+      <div class="collapse navbar-collapse" id="navbarRentcars">
+        <ul class="navbar-link-list navbar-nav mx-auto mb-2 mb-lg-0 fw-semibold">
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="views/Seccion_vehiculos.html">Vehículos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="views/seccion_servicios.html">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="#promociones">Vehículos destacados</a>
+          </li>
+        </ul>
+
+        <!-- Acciones del Menú (Acceso y Registro) -->
+        <div class="d-flex align-items-center gap-3">
+          <!-- Login Usuario con Ícono y Tooltip -->
+          <a href="views/seguridad/login.html" class="nav-icon-link text-secondary p-2 rounded-circle hover-bg-light" 
+             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Iniciar Sesión / Login">
+            <i class="bi bi-person-circle fs-4"></i>
+            <span class="visually-hidden">Login</span>
+          </a>
+
+          <!-- Opción Registrar -->
+          <a href="views/seguridad/registro.html" class="btn btn-primary btn-sm px-3 rounded-pill fw-bold shadow-sm ms-2">
+            Registrar
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+</body>
+</html>

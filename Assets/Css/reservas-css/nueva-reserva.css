@@ -1,0 +1,580 @@
+/* =====================================
+   RENTCARS - RESERVAS
+===================================== */
+
+:root {
+  --background: #34383c;
+  --surface: #ffffff;
+  --text: #292d30;
+  --muted: #6d7479;
+  --border: #dedfdf;
+  --accent: #df9954;
+  --green: #287143;
+  --red: #b13a34;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.reservation-main {
+  max-width: 1200px;
+}
+
+/* Encabezado */
+.page-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.calendar-icon {
+  display: flex;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #5c6267;
+  border-radius: 8px;
+  background: #454a4e;
+  color: #ffffff;
+  font-size: 30px;
+}
+
+.page-eyebrow {
+  margin-bottom: 4px;
+  color: #e8b17b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.page-title {
+  margin-bottom: 6px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.page-description {
+  color: #d5d8da;
+  font-size: 14px;
+}
+
+/* Tarjetas */
+.reservation-card,
+.history-card {
+  overflow: hidden;
+  border: none;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.reservation-card .card-header,
+.history-card .card-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.reservation-card .card-body,
+.history-card .card-body {
+  padding: 20px;
+}
+
+.section-title {
+  margin-bottom: 7px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Foto del vehículo */
+.vehicle-photo-container {
+  position: relative;
+  display: flex;
+  min-height: 235px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #eeeeec;
+}
+
+.vehicle-photo {
+  display: block;
+  width: 100%;
+  height: 245px;
+  object-fit: contain;
+}
+
+.photo-placeholder {
+  display: flex;
+  width: 100%;
+  min-height: 235px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #737b80;
+  text-align: center;
+}
+
+.photo-placeholder span {
+  font-size: 48px;
+}
+
+.photo-placeholder p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+/* Estado del vehículo */
+.status-badge {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background: #e0f1e5;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-badge.not-available {
+  background: #f9e5e3;
+  color: var(--red);
+}
+
+/* Datos del vehículo */
+.vehicle-category-label {
+  margin-bottom: 5px;
+  color: #956331;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.vehicle-name {
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.vehicle-category {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vehicle-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-data-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.vehicle-data-row:last-child {
+  border-bottom: none;
+}
+
+.vehicle-data-row span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vehicle-data-row strong {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* Formulario */
+.form-section-title {
+  margin-bottom: 16px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.form-label {
+  margin-bottom: 6px;
+  color: #363c40;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-control {
+  min-height: 40px;
+  border: 1px solid #d5d9dc;
+  border-radius: 5px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(223, 153, 84, .18);
+}
+
+.form-control:disabled {
+  background: #eeeeec;
+}
+
+/* Estado inicial de la reserva */
+.reservation-status-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #ead8c4;
+  border-radius: 6px;
+  background: #fff8f0;
+}
+
+.pending-icon {
+  display: flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #f5e5d3;
+  color: #895d32;
+  font-size: 25px;
+}
+
+.reservation-status-box div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-label {
+  color: #6d6256;
+  font-size: 12px;
+}
+
+.pending-status {
+  width: fit-content;
+  padding: 4px 9px;
+  border-radius: 4px;
+  background: #f8e7cc;
+  color: #85581d;
+  font-size: 12px;
+}
+
+/* Aviso al cliente */
+.reservation-notice {
+  padding: 14px;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  background: #fff7ee;
+  color: #56483b;
+}
+
+.reservation-notice strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.reservation-notice p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Botones */
+.btn {
+  min-height: 40px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.btn-confirm {
+  border: 1px solid #34383c;
+  background: #34383c;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btn-confirm:hover {
+  border-color: #4c5257;
+  background: #4c5257;
+  color: #ffffff;
+}
+
+.btn-confirm:disabled {
+  border-color: #a4a8aa;
+  background: #a4a8aa;
+  color: #ffffff;
+}
+
+.btn-cancel {
+  border: 1px solid #d7dadd;
+  background: #e9ebed;
+  color: #34383c;
+}
+
+.btn-cancel:hover {
+  background: #dadddf;
+  color: #34383c;
+}
+
+.form-actions .btn {
+  flex: 1;
+}
+
+/* Estado sin vehículo seleccionado */
+.empty-state {
+  padding: 45px 20px;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.empty-icon {
+  margin-bottom: 12px;
+  font-size: 42px;
+}
+
+.empty-state h2 {
+  color: var(--text);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.empty-state p {
+  max-width: 420px;
+  margin: 10px auto 20px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Historial */
+.history-card {
+  overflow: visible;
+}
+
+.history-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.history-table {
+  min-width: 790px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.history-table thead th {
+  padding: 12px 10px;
+  border-bottom: 1px solid #dfe1e2;
+  background: #f6f6f5;
+  color: #454b4f;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.history-table tbody td {
+  padding: 13px 10px;
+  border-color: #eceeee;
+  vertical-align: middle;
+}
+
+.history-empty {
+  padding: 28px 12px !important;
+  color: var(--muted) !important;
+  text-align: center;
+}
+
+.history-vehicle-name {
+  display: block;
+  min-width: 120px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Estados de las reservas */
+.history-status {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background: #fff0d8;
+  color: #84581d;
+}
+
+.status-confirmed {
+  background: #e0f1e5;
+  color: #287143;
+}
+
+.status-cancelled {
+  background: #f9e5e3;
+  color: #a32f2a;
+}
+
+.status-completed {
+  background: #e0f1e5;
+  color: #287143;
+}
+
+.status-other {
+  background: #e9ebed;
+  color: #454b4f;
+}
+
+/* Acciones del historial */
+.history-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 170px;
+}
+
+.btn-delete-history,
+.btn-cancel-history {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.btn-delete-history {
+  border-color: #d4b0ad;
+  background: #fff0ef;
+  color: #9b302b;
+}
+
+.btn-delete-history:hover {
+  border-color: #c78b85;
+  background: #f9e0de;
+  color: #842722;
+}
+
+.btn-cancel-history {
+  border-color: #e4b6b2;
+  background: #fff0ef;
+  color: #a32f2a;
+}
+
+.btn-cancel-history:hover {
+  border-color: #d78a84;
+  background: #f9e0de;
+}
+
+.btn-delete-history:focus-visible,
+.btn-cancel-history:focus-visible {
+  outline: 3px solid rgba(223, 153, 84, .45);
+  outline-offset: 2px;
+}
+
+.cancelled-note {
+  color: #a32f2a;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Fecha y hora en el historial */
+.history-date-time {
+  min-width: 145px;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.history-date-time .time-unavailable {
+  color: var(--muted);
+  font-size: 11px;
+  white-space: normal;
+}
+
+/* Adaptación a tablet y celular */
+@media (max-width: 767px) {
+  .page-title {
+    font-size: 23px;
+  }
+
+  .calendar-icon {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+    font-size: 25px;
+  }
+
+  .reservation-card .card-header,
+  .reservation-card .card-body,
+  .history-card .card-header,
+  .history-card .card-body {
+    padding: 15px;
+  }
+
+  .vehicle-photo-container,
+  .photo-placeholder {
+    min-height: 200px;
+  }
+
+  .vehicle-photo {
+    height: 210px;
+  }
+
+  .vehicle-name {
+    font-size: 21px;
+  }
+
+  .history-card .card-header {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 575px) {
+  .page-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .history-actions {
+    min-width: 0;
+  }
+}

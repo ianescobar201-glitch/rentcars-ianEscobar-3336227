@@ -1,0 +1,9 @@
+# Evita guardar en caché las vistas HTML para que los cambios
+# se reflejen inmediatamente en el navegador durante el desarrollo.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html?$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+</IfModule>

@@ -1,0 +1,108 @@
+:root {
+    --register-gold: #c9973f;
+    --register-gold-hover: #ae7e2d;
+    --register-ink: #212529;
+    --register-border: #dee2e6;
+}
+
+body.bg-beige-tapestry {
+    min-height: 100vh;
+    background-color: #dfe3e8;
+    background-image: radial-gradient(#bac3ce 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--register-ink);
+}
+
+.card-register {
+    max-width: 1100px;
+    border-radius: 16px;
+    background-color: #ffffff;
+}
+
+.register-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 620px;
+    background:
+        radial-gradient(ellipse at 80% 20%, rgba(201, 151, 63, 0.42), transparent 45%),
+        linear-gradient(145deg, #212529, #343a40 65%, #16191c);
+}
+
+.banner-overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.32));
+}
+
+.text-gold {
+    color: var(--register-gold) !important;
+}
+
+.icon-circle {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.1rem;
+}
+
+.bg-white-20 {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.form-control-custom {
+    min-height: 44px;
+    border-color: var(--register-border);
+    color: var(--register-ink);
+}
+
+.form-control-custom::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-custom:focus {
+    border-color: var(--register-gold);
+    box-shadow: 0 0 0 0.2rem rgba(201, 151, 63, 0.2);
+}
+
+.btn-outline-custom {
+    border-color: var(--register-border);
+    color: #6c757d;
+    background-color: #ffffff;
+}
+
+.btn-outline-custom:hover,
+.btn-outline-custom:focus {
+    border-color: var(--register-border);
+    color: var(--register-ink);
+    background-color: #f8f9fa;
+}
+
+.btn-gold {
+    border-color: var(--register-gold);
+    color: #ffffff;
+    background-color: var(--register-gold);
+}
+
+.btn-gold:hover,
+.btn-gold:focus {
+    border-color: var(--register-gold-hover);
+    color: #ffffff;
+    background-color: var(--register-gold-hover);
+}
+
+.hover-underline:hover {
+    text-decoration: underline !important;
+}
+
+@media (max-width: 991.98px) {
+    .card-register {
+        max-width: 680px;
+    }
+}

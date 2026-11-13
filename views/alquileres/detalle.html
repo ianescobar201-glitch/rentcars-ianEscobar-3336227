@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de alquiler | Rentcars</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="../../Assets/Css/siderbar_empleados-css/sidebar_2.css">
+  <link
+    rel="stylesheet"
+    href="../../Assets/Css/alquileres-css/detalle-alquiler.css?v=20261108-2"
+  >
+</head>
+<body class="bg-dark-app">
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+    <div class="main-content">
+      <div id="header-container"></div>
+
+  <main class="container-fluid contract-main px-3 px-lg-5 py-4 py-lg-5">
+    <header class="contract-heading mb-4">
+      <div class="contract-heading-icon" aria-hidden="true">▤</div>
+      <div>
+        <p class="contract-eyebrow">RENTCARS / ALQUILERES / CONTRATOS</p>
+        <h1 class="contract-title">Detalle de alquiler</h1>
+        <p class="contract-description mb-0">
+          Consulta los alquileres, completa los datos del contrato y revisa los documentos generados.
+        </p>
+      </div>
+    </header>
+
+    <div id="pageMessage" class="alert d-none" role="status" aria-live="polite"></div>
+
+    <!-- BLOQUE 1: RESUMEN DEL CONTRATO -->
+    <section id="contractSummarySection" class="contract-card mb-4">
+      <div class="section-header">
+        <div>
+          <span class="section-kicker">CONTRATO</span>
+          <h2>Resumen del contrato</h2>
+          <p class="mb-0">Datos principales del contrato seleccionado.</p>
+        </div>
+        <span id="contractStatus" class="contract-status status-pending">Sin contrato seleccionado</span>
+      </div>
+
+      <div id="contractEmptyState" class="empty-state">
+        <div class="empty-icon" aria-hidden="true">📄</div>
+        <h3>Selecciona un alquiler o un contrato</h3>
+        <p>
+          Puedes generar un contrato desde el historial de alquileres o abrir uno existente desde el historial de contratos.
+        </p>
+        <a href="nuevo.html" class="btn btn-secondary-light">Volver al listado de alquileres</a>
+      </div>
+
+      <div id="contractContent" class="d-none">
+        <div class="summary-main">
+          <div>
+            <p class="summary-label">Número de contrato</p>
+            <h3 id="summaryContractNumber" class="summary-number">—</h3>
+            <p id="summaryCustomerName" class="summary-client mb-0">Cliente no vinculado</p>
+            <p id="summaryCustomerEmail" class="summary-email mb-0">No disponible</p>
+          </div>
+          <div class="summary-total">
+            <span>Valor total</span>
+            <strong id="summaryTotal">—</strong>
+          </div>
+        </div>
+
+        <div class="summary-metrics">
+          <div class="metric-item">
+            <span>Fecha de generación</span>
+            <strong id="summaryGenerationDate">—</strong>
+          </div>
+          <div class="metric-item">
+            <span>Fecha de inicio</span>
+            <strong id="summaryStartDate">—</strong>
+          </div>
+          <div class="metric-item">
+            <span>Fecha de fin</span>
+            <strong id="summaryEndDate">—</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL DE DATOS DEL CLIENTE: los datos reales aparecerán cuando exista una relación con el usuario -->
+    <section class="contract-card mb-4" id="customerInformationSection">
+      <div class="section-header">
+        <div>
+          <h2>Datos del cliente</h2>
+          <p class="mb-0">Información del usuario asociado al alquiler o a la reserva.</p>
+        </div>
+      </div>
+
+      <div class="customer-information-body">
+        <div class="customer-avatar" aria-hidden="true">
+          <span>♟</span>
+        </div>
+
+        <div class="customer-information-list">
+          <div class="customer-information-row">
+            <span>Nombre</span>
+            <strong id="clientFirstName">Cliente no vinculado</strong>
+          </div>
+          <div class="customer-information-row">
+            <span>Apellido</span>
+            <strong id="clientLastName">—</strong>
+          </div>
+          <div class="customer-information-row">
+            <span>Correo</span>
+            <strong id="clientEmail">No disponible</strong>
+          </div>
+          <div class="customer-information-row">
+            <span>Rol</span>
+            <strong id="clientRole">Cliente</strong>
+          </div>
+          <div class="customer-information-row">
+            <span>Estado</span>
+            <strong id="clientState">No disponible</strong>
+          </div>
+        </div>
+
+        <p id="customerInformationNote" class="customer-information-note">
+          Los datos se mostrarán cuando el usuario esté asociado a la reserva o cuando se conecte el backend.
+        </p>
+      </div>
+    </section>
+
+    <!-- BLOQUE 2: FICHA DETALLADA Y CAMPOS PARA EL EMPLEADO -->
+    <section class="contract-card mb-4" id="contractDetailsSection">
+      <div class="section-header">
+        <div>
+          <span class="section-kicker">INFORMACIÓN COMPLETA</span>
+          <h2>Ficha detallada del contrato</h2>
+          <p class="mb-0">Completa o corrige los campos del contrato seleccionado.</p>
+        </div>
+        <span class="section-document-icon" aria-hidden="true">▣</span>
+      </div>
+
+      <div id="contractFormNotice" class="form-notice">
+        Selecciona un alquiler de la tabla para habilitar los campos del contrato.
+      </div>
+
+      <form id="contractDetailsForm" novalidate>
+        <fieldset id="contractFields" disabled>
+          <div class="contract-form-grid">
+            <div class="form-field">
+              <label for="numeroContrato" class="form-label">Número de contrato</label>
+              <input type="text" id="numeroContrato" class="form-control" maxlength="60" required>
+            </div>
+
+            <div class="form-field">
+              <label for="fechaGeneracion" class="form-label">Fecha de generación</label>
+              <input type="datetime-local" id="fechaGeneracion" class="form-control" required>
+            </div>
+
+            <div class="form-field">
+              <label for="fechaInicio" class="form-label">Fecha de inicio</label>
+              <input type="datetime-local" id="fechaInicio" class="form-control" required>
+            </div>
+
+            <div class="form-field">
+              <label for="fechaFin" class="form-label">Fecha de fin</label>
+              <input type="datetime-local" id="fechaFin" class="form-control" required>
+            </div>
+
+            <div class="form-field">
+              <label for="tipoTarifa" class="form-label">Tipo de tarifa</label>
+              <input type="text" id="tipoTarifa" class="form-control" maxlength="100" placeholder="Ej. Por hora, diaria, semanal" required>
+            </div>
+
+            <div class="form-field">
+              <label for="valorTarifa" class="form-label">Valor de tarifa (COP)</label>
+              <input type="number" id="valorTarifa" class="form-control" min="0" step="1" required>
+            </div>
+
+            <div class="form-field">
+              <label for="kilometrajeInicial" class="form-label">Kilometraje inicial</label>
+              <input type="number" id="kilometrajeInicial" class="form-control" min="0" step="1" placeholder="No registrado">
+            </div>
+
+            <div class="form-field">
+              <label for="kilometrajeFinal" class="form-label">Kilometraje final</label>
+              <input type="number" id="kilometrajeFinal" class="form-control" min="0" step="1" placeholder="Pendiente de devolución">
+            </div>
+
+            <div class="form-field">
+              <label for="valorTotal" class="form-label">Valor total (COP)</label>
+              <input type="number" id="valorTotal" class="form-control" min="0" step="1" required>
+            </div>
+
+            <div class="form-field">
+              <label for="estadoContrato" class="form-label">Estado del contrato</label>
+              <select id="estadoContrato" class="form-select" required>
+                <option value="Pendiente de generación">Pendiente de generación</option>
+                <option value="Activo">Activo</option>
+                <option value="Finalizado">Finalizado</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+            </div>
+
+            <div class="form-field form-field-wide">
+              <label for="condiciones" class="form-label">Condiciones</label>
+              <textarea id="condiciones" class="form-control" rows="4" maxlength="10000" placeholder="Escribe las condiciones del contrato." required></textarea>
+            </div>
+
+            <div class="form-field form-field-wide">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea id="observaciones" class="form-control" rows="4" maxlength="5000" placeholder="Escribe observaciones del empleado, si corresponde."></textarea>
+            </div>
+
+            <div class="form-field form-field-wide">
+              <label for="archivoContrato" class="form-label">Archivo del contrato (PDF)</label>
+              <div class="file-upload-row">
+                <input type="file" id="archivoContrato" class="form-control" accept="application/pdf,.pdf">
+                <a href="#" id="archivoContratoLink" class="btn btn-secondary-light d-none" download>
+                  Descargar PDF adjunto
+                </a>
+              </div>
+              <p class="form-text mb-0">
+                Puedes adjuntar un PDF de hasta 1 MB. El archivo se guarda en el servidor al guardar el contrato. Si aún no tienes un archivo, utiliza «Descargar contrato PDF» para preparar una versión imprimible.
+              </p>
+              <strong id="archivoContratoNombre" class="file-name-label">No se ha adjuntado un archivo PDF.</strong>
+            </div>
+          </div>
+
+          <div class="contract-actions">
+            <button type="submit" id="saveContractBtn" class="btn btn-primary-dark">
+              Guardar datos del contrato
+            </button>
+            <button type="button" id="downloadContractBtn" class="btn btn-dark">
+              Descargar contrato PDF
+            </button>
+            <a href="nuevo.html" class="btn btn-secondary-light">
+              Volver al listado de alquileres
+            </a>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- BLOQUE 3A: HISTORIAL DE ALQUILERES -->
+    <section class="contract-card history-card mb-4" id="rentalHistorySection">
+      <div class="section-header">
+        <div>
+          <h2>Historial de alquileres</h2>
+          <p class="mb-0">Consulta la información disponible y genera un contrato para un alquiler específico.</p>
+        </div>
+        <span class="section-document-icon" aria-hidden="true">▤</span>
+      </div>
+
+      <div class="history-filters">
+        <div class="filter-field">
+          <label for="rentalSearch" class="form-label">Buscar alquiler</label>
+          <input type="search" id="rentalSearch" class="form-control" placeholder="Nombre, correo, vehículo o placa">
+        </div>
+        <div class="filter-field">
+          <label for="rentalStatusFilter" class="form-label">Estado</label>
+          <select id="rentalStatusFilter" class="form-select">
+            <option value="">Todos los estados</option>
+            <option value="activo">Activo</option>
+            <option value="cancelado">Cancelado</option>
+            <option value="completado">Completado</option>
+          </select>
+        </div>
+        <button type="button" id="clearRentalSearchBtn" class="btn btn-secondary-light">Limpiar filtros</button>
+      </div>
+
+      <div id="rentalHistoryMessage" class="alert d-none mx-3 mx-lg-4" role="status"></div>
+
+      <div class="table-responsive">
+        <table class="table contract-table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo del cliente</th>
+              <th>Vehículo</th>
+              <th>Fecha de entrega</th>
+              <th>Fecha de devolución</th>
+              <th>Tipo de tarifa</th>
+              <th>Valor tarifa</th>
+              <th>Valor total</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="rentalHistoryBody">
+            <tr><td colspan="11" class="history-empty">Cargando alquileres...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BLOQUE 3B: HISTORIAL DE CONTRATOS Y FILTROS -->
+    <section class="contract-card history-card mb-4" id="contractHistorySection">
+      <div class="section-header">
+        <div>
+          <h2>Historial de contratos de clientes</h2>
+          <p class="mb-0">Filtra los contratos por cliente, estado o fecha de generación.</p>
+        </div>
+        <span class="section-document-icon" aria-hidden="true">▧</span>
+      </div>
+
+      <form id="contractFilterForm" class="contract-filters">
+        <div class="filter-field">
+          <label for="contractCustomerFilter" class="form-label">Cliente</label>
+          <select id="contractCustomerFilter" class="form-select">
+            <option value="">Todos los clientes</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="contractStatusFilter" class="form-label">Estado</label>
+          <select id="contractStatusFilter" class="form-select">
+            <option value="">Todos los estados</option>
+            <option value="pendiente de generación">Pendiente de generación</option>
+            <option value="activo">Activo</option>
+            <option value="finalizado">Finalizado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="contractDateFrom" class="form-label">Generado desde</label>
+          <input type="date" id="contractDateFrom" class="form-control">
+        </div>
+
+        <div class="filter-field">
+          <label for="contractDateTo" class="form-label">Generado hasta</label>
+          <input type="date" id="contractDateTo" class="form-control">
+        </div>
+
+        <div class="filter-actions">
+          <button type="submit" class="btn btn-primary-dark">Filtrar</button>
+          <button type="button" id="clearContractFiltersBtn" class="btn btn-secondary-light">Limpiar</button>
+        </div>
+      </form>
+
+      <div id="contractHistoryMessage" class="alert d-none mx-3 mx-lg-4" role="status"></div>
+
+      <div class="table-responsive">
+        <table class="table contract-table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Número de contrato</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>
+              <th>Vehículo</th>
+              <th>Fecha de generación</th>
+              <th>Fecha de inicio</th>
+              <th>Fecha de fin</th>
+              <th>Valor total</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="contractHistoryBody">
+            <tr><td colspan="11" class="history-empty">Cargando contratos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+      <div id="footer-container"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../Assets/Js/main.js"></script>
+  <script src="../../Assets/Js/sidebar_empleado-js/sidebar_2.js?v=4"></script>
+  <script src="../../Assets/Js/alquileres-js/detalle-alquiler.js?v=20261108-2"></script>
+</body>
+</html>
